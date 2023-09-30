@@ -18,6 +18,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+await app.UseInitialiseDatabaseAsync();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -11,5 +11,6 @@ namespace EBookStore.Domain.Entities
         public string State { get; set; }
         public string Country { get; set; }
         public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

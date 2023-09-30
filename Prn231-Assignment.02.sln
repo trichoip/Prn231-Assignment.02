@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBookStore.WebApi", "src\EBookStore.WebApi\EBookStore.WebApi.csproj", "{E4D94F76-3DBA-4C7A-9B6C-72E1112E09E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBookStore.WebApi", "src\EBookStore.WebApi\EBookStore.WebApi.csproj", "{E4D94F76-3DBA-4C7A-9B6C-72E1112E09E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBookStore.Application", "src\EBookStore.Application\EBookStore.Application.csproj", "{6B93742D-67C2-47D4-9107-EAA43F46601E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBookStore.Application", "src\EBookStore.Application\EBookStore.Application.csproj", "{6B93742D-67C2-47D4-9107-EAA43F46601E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBookStore.Domain", "src\EBookStore.Domain\EBookStore.Domain.csproj", "{17891F94-B0E6-47AF-8269-61A6C26AD968}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBookStore.Domain", "src\EBookStore.Domain\EBookStore.Domain.csproj", "{17891F94-B0E6-47AF-8269-61A6C26AD968}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBookStore.Infrastructure", "src\EBookStore.Infrastructure\EBookStore.Infrastructure.csproj", "{3114E2FA-EBB5-4D29-93E9-4585305216B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBookStore.Infrastructure", "src\EBookStore.Infrastructure\EBookStore.Infrastructure.csproj", "{3114E2FA-EBB5-4D29-93E9-4585305216B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBookStore.Shared", "src\EBookStore.Shared\EBookStore.Shared.csproj", "{C9EC335C-2B6B-43C4-87D1-C0B67F6658E3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBookStore.WebClient", "src\EBookStore.WebClient\EBookStore.WebClient.csproj", "{261F2ADC-9B1B-4F3C-A822-0CDE9D22EE06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBookStore.WebClient", "src\EBookStore.WebClient\EBookStore.WebClient.csproj", "{261F2ADC-9B1B-4F3C-A822-0CDE9D22EE06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{3114E2FA-EBB5-4D29-93E9-4585305216B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3114E2FA-EBB5-4D29-93E9-4585305216B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3114E2FA-EBB5-4D29-93E9-4585305216B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9EC335C-2B6B-43C4-87D1-C0B67F6658E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9EC335C-2B6B-43C4-87D1-C0B67F6658E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9EC335C-2B6B-43C4-87D1-C0B67F6658E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9EC335C-2B6B-43C4-87D1-C0B67F6658E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{261F2ADC-9B1B-4F3C-A822-0CDE9D22EE06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{261F2ADC-9B1B-4F3C-A822-0CDE9D22EE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{261F2ADC-9B1B-4F3C-A822-0CDE9D22EE06}.Release|Any CPU.ActiveCfg = Release|Any CPU

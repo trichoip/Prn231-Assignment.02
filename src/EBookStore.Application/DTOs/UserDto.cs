@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using EBookStore.Application.Mappings;
+using EBookStore.Domain.Entities;
 
-namespace EBookStore.Domain.Entities
+namespace EBookStore.Application.DTOs
 {
-    public class User
+    public class UserDto : IMapFrom<User>
     {
         public int UserId { get; set; }
         public string EmailAddress { get; set; }
@@ -11,12 +12,12 @@ namespace EBookStore.Domain.Entities
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
+        public int RoleId { get; set; }
         public DateTime? HireDate { get; set; }
 
-        public int RoleId { get; set; }
         public int PubId { get; set; }
-        [ForeignKey("PubId")]
-        public virtual Publisher Publisher { get; set; }
-        public virtual Role Role { get; set; }
+
+        //public virtual PublisherDto Publisher { get; set; }
+        //public virtual RoleDto Role { get; set; }
     }
 }

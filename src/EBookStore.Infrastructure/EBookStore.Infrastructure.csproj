@@ -8,19 +8,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="Bogus" Version="34.0.2" />
+		<PackageReference Include="AutoBogus" Version="2.13.1" />
 		<PackageReference Include="MySql.EntityFrameworkCore" Version="7.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10" />
-
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.10" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\EBookStore.Application\EBookStore.Application.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Data\SeedData\" />
-		<Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>
