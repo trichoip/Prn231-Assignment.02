@@ -1,4 +1,6 @@
-﻿namespace EBookStore.Domain.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace EBookStore.Domain.Entities
 {
     public class Author
     {
@@ -11,6 +13,7 @@
         public string State { get; set; }
         public int Zip { get; set; }
         public string EmailAddress { get; set; }
+        [JsonIgnore]
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
     }
 }

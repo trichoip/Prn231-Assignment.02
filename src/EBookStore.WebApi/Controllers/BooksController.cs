@@ -3,6 +3,7 @@ using EBookStore.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.EntityFrameworkCore;
 
 namespace EBookStore.WebApi.Controllers;
 
@@ -15,13 +16,13 @@ public class BooksController : ODataController
         _entityService = entityService;
     }
 
-    [EnableQuery(PageSize = 1)]
+    [EnableQuery]
     public async Task<IActionResult> Get() => Ok(_entityService.Entities);
 
     [EnableQuery]
     public async Task<IActionResult> Get(int key)
     {
-        var entity = await _entityService.FindByIdAsync(key);
+        var entity = await _entityService.Entities.Include(c => c.Publisher).FirstOrDefaultAsync(c => c.BookId == key);
         if (entity == null) return NotFound();
         return Ok(entity);
     }

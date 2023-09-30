@@ -15,7 +15,7 @@ public class UsersController : ODataController
         _entityService = entityService;
     }
 
-    [EnableQuery(PageSize = 1)]
+    [EnableQuery]
     public async Task<IActionResult> Get() => Ok(_entityService.Entities);
 
     [EnableQuery]

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace EBookStore.Domain.Entities
 {
@@ -17,6 +18,7 @@ namespace EBookStore.Domain.Entities
 
         [ForeignKey("PubId")]
         public virtual Publisher? Publisher { get; set; }
+        [JsonIgnore]
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
     }
 }
