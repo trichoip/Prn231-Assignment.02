@@ -5,5 +5,6 @@ public interface IUnitOfWork : IDisposable
     IBookRepository BookRepository { get; }
     IPublisherRepository PublisherRepository { get; }
     IUserRepository UserRepository { get; }
+    IQueryable<T> Entities<T>() where T : class;
     Task CommitAsync();
 }

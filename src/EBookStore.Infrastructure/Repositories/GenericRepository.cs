@@ -15,28 +15,13 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public IQueryable<T> Entities => _dbContext.Set<T>();
 
-    public async Task CreateAsync(T entity)
-    {
-        await dbSet.AddAsync(entity);
-    }
+    public async Task CreateAsync(T entity) => await dbSet.AddAsync(entity);
 
-    public async Task<IList<T>> FindAllAsync()
-    {
-        return await dbSet.ToListAsync();
-    }
+    public async Task<IList<T>> FindAllAsync() => await dbSet.ToListAsync();
 
-    public async Task<T?> FindByIdAsync(int id)
-    {
-        return await dbSet.FindAsync(id);
-    }
+    public async Task<T?> FindByIdAsync(int id) => await dbSet.FindAsync(id);
 
-    public Task RemoveAsync(T entity)
-    {
-        return Task.FromResult(dbSet.Remove(entity));
-    }
+    public Task RemoveAsync(T entity) => Task.FromResult(dbSet.Remove(entity));
 
-    public Task UpdateAsync(T entity)
-    {
-        return Task.FromResult(dbSet.Update(entity));
-    }
+    public Task UpdateAsync(T entity) => Task.FromResult(dbSet.Update(entity));
 }

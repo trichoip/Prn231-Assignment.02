@@ -1,30 +1,27 @@
 ﻿using EBookStore.Application.Repositories;
 using EBookStore.Infrastructure.Data;
-using System.Collections;
 
 namespace EBookStore.Infrastructure.Repositories;
 public class UnitOfWork : IUnitOfWork
 {
     private bool disposed = false;
     private readonly ApplicationDbContext _dbContext;
-    private Hashtable _repositories;
     public UnitOfWork(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
+        AuthorRepository = new AuthorRepository(_dbContext);
+        BookRepository = new BookRepository(_dbContext);
+        PublisherRepository = new PublisherRepository(_dbContext);
+        UserRepository = new UserRepository(_dbContext);
     }
 
-    public IAuthorRepository AuthorRepository => AuthorRepository ?? new AuthorRepository(_dbContext);
+    public IAuthorRepository AuthorRepository { get; }
+    public IBookRepository BookRepository { get; }
+    public IPublisherRepository PublisherRepository { get; }
+    public IUserRepository UserRepository { get; }
 
-    public IBookRepository BookRepository => BookRepository ?? new BookRepository(_dbContext);
-
-    public IPublisherRepository PublisherRepository => PublisherRepository ?? new PublisherRepository(_dbContext);
-
-    public IUserRepository UserRepository => UserRepository ?? new UserRepository(_dbContext);
-
-    public async Task CommitAsync()
-    {
-        await _dbContext.SaveChangesAsync();
-    }
+    public async Task CommitAsync() => await _dbContext.SaveChangesAsync();
+    public IQueryable<T> Entities<T>() where T : class => _dbContext.Set<T>();
 
     protected virtual void Dispose(bool disposing)
     {

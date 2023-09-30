@@ -3,6 +3,7 @@ using System;
 using EBookStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EBookStore.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230930065508_update-fk-1")]
+    partial class updatefk1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,7 +80,7 @@ namespace EBookStore.Infrastructure.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double");
 
-                    b.Property<int?>("PubId")
+                    b.Property<int>("PubId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("PublishedDate")
@@ -197,9 +200,11 @@ namespace EBookStore.Infrastructure.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<int?>("PubId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("RoleId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Source")
@@ -220,7 +225,8 @@ namespace EBookStore.Infrastructure.Migrations
                     b.HasOne("EBookStore.Domain.Entities.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PubId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Publisher");
                 });
@@ -249,12 +255,14 @@ namespace EBookStore.Infrastructure.Migrations
                     b.HasOne("EBookStore.Domain.Entities.Publisher", "Publisher")
                         .WithMany("Users")
                         .HasForeignKey("PubId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EBookStore.Domain.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Publisher");
 

@@ -10,6 +10,5 @@ namespace EBookStore.Application.DTOs
         public string City { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
-        //public virtual ICollection<BookDto> Books { get; set; }
     }
 }

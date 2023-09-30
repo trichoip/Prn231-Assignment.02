@@ -13,10 +13,10 @@ namespace EBookStore.Domain.Entities
         public double YtdSales { get; set; }
         public string Notes { get; set; }
         public DateTime? PublishedDate { get; set; }
-        public int PubId { get; set; }
+        public int? PubId { get; set; }
 
         [ForeignKey("PubId")]
-        public virtual Publisher Publisher { get; set; }
+        public virtual Publisher? Publisher { get; set; }
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
     }
 }

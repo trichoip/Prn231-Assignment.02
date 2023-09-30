@@ -12,11 +12,10 @@ namespace EBookStore.Domain.Entities
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public DateTime? HireDate { get; set; }
-
-        public int RoleId { get; set; }
-        public int PubId { get; set; }
+        public int? RoleId { get; set; }
+        public int? PubId { get; set; }
         [ForeignKey("PubId")]
-        public virtual Publisher Publisher { get; set; }
-        public virtual Role Role { get; set; }
+        public virtual Publisher? Publisher { get; set; }
+        public virtual Role? Role { get; set; }
     }
 }

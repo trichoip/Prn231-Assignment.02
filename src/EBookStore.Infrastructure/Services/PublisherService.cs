@@ -26,28 +26,21 @@ public class PublisherService : IPublisherService
         return _mapper.Map<PublisherDto>(entity);
     }
 
-    public async Task<IList<PublisherDto>> FindAllAsync()
-    {
-        var entities = await _unitOfWork.PublisherRepository.FindAllAsync();
-        return _mapper.Map<IList<PublisherDto>>(entities);
-    }
+    public async Task<Publisher?> FindByIdAsync(int id) => await _unitOfWork.PublisherRepository.FindByIdAsync(id);
 
-    public async Task<PublisherDto?> FindByIdAsync(int id)
+    public async Task RemoveAsync(int id)
     {
         var entity = await _unitOfWork.PublisherRepository.FindByIdAsync(id);
-        return _mapper.Map<PublisherDto>(entity);
-    }
-
-    public async Task RemoveAsync(PublisherDto entityDto)
-    {
-        var entity = _mapper.Map<Publisher>(entityDto);
+        if (entity is null) throw new KeyNotFoundException($"Entity with id {id} not found");
         await _unitOfWork.PublisherRepository.RemoveAsync(entity);
         await _unitOfWork.CommitAsync();
     }
 
     public async Task UpdateAsync(PublisherDto entityDto)
     {
-        var entity = _mapper.Map<Publisher>(entityDto);
+        var entity = await _unitOfWork.PublisherRepository.FindByIdAsync(entityDto.PubId);
+        if (entity is null) throw new KeyNotFoundException($"Entity with id {entityDto.PubId} not found");
+        _mapper.Map(entityDto, entity);
         await _unitOfWork.PublisherRepository.UpdateAsync(entity);
         await _unitOfWork.CommitAsync();
     }

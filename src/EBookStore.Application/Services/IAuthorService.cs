@@ -6,9 +6,8 @@ namespace EBookStore.Application.Services;
 public interface IAuthorService
 {
     IQueryable<Author> Entities { get; }
-    Task<IList<AuthorDto>> FindAllAsync();
-    Task<AuthorDto?> FindByIdAsync(int id);
+    Task<Author?> FindByIdAsync(int id);
     Task<AuthorDto> CreateAsync(AuthorDto entityDto);
     Task UpdateAsync(AuthorDto entityDto);
-    Task RemoveAsync(AuthorDto entityDto);
+    Task RemoveAsync(int id);
 }

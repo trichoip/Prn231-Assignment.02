@@ -32,7 +32,8 @@ public static class DependencyInjection
 
     public static void AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services
+            .AddScoped<IUnitOfWork, UnitOfWork>();
     }
 
     public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
@@ -53,7 +54,8 @@ public static class DependencyInjection
 
     public static void AddInitialiseDatabase(this IServiceCollection services)
     {
-        services.AddScoped<ApplicationDbContextInitialiser>();
+        services
+            .AddScoped<ApplicationDbContextInitialiser>();
     }
 
     public static async Task UseInitialiseDatabaseAsync(this WebApplication app)

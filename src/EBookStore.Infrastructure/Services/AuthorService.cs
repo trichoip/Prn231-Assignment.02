@@ -23,31 +23,25 @@ public class AuthorService : IAuthorService
         var entity = _mapper.Map<Author>(entityDto);
         await _unitOfWork.AuthorRepository.CreateAsync(entity);
         await _unitOfWork.CommitAsync();
-        return _mapper.Map<AuthorDto>(entity);
+        _mapper.Map(entity, entityDto);
+        return entityDto;
     }
 
-    public async Task<IList<AuthorDto>> FindAllAsync()
-    {
-        var entities = await _unitOfWork.AuthorRepository.FindAllAsync();
-        return _mapper.Map<IList<AuthorDto>>(entities);
-    }
+    public async Task<Author?> FindByIdAsync(int id) => await _unitOfWork.AuthorRepository.FindByIdAsync(id);
 
-    public async Task<AuthorDto?> FindByIdAsync(int id)
+    public async Task RemoveAsync(int id)
     {
         var entity = await _unitOfWork.AuthorRepository.FindByIdAsync(id);
-        return _mapper.Map<AuthorDto>(entity);
-    }
-
-    public async Task RemoveAsync(AuthorDto entityDto)
-    {
-        var entity = _mapper.Map<Author>(entityDto);
+        if (entity is null) throw new KeyNotFoundException($"Entity with id {id} not found");
         await _unitOfWork.AuthorRepository.RemoveAsync(entity);
         await _unitOfWork.CommitAsync();
     }
 
     public async Task UpdateAsync(AuthorDto entityDto)
     {
-        var entity = _mapper.Map<Author>(entityDto);
+        var entity = await _unitOfWork.AuthorRepository.FindByIdAsync(entityDto.AuthorId);
+        if (entity is null) throw new KeyNotFoundException($"Entity with id {entityDto.AuthorId} not found");
+        _mapper.Map(entityDto, entity);
         await _unitOfWork.AuthorRepository.UpdateAsync(entity);
         await _unitOfWork.CommitAsync();
     }

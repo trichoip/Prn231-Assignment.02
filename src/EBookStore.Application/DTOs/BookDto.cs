@@ -1,5 +1,6 @@
 ﻿using EBookStore.Application.Mappings;
 using EBookStore.Domain.Entities;
+using System.ComponentModel;
 
 namespace EBookStore.Application.DTOs
 {
@@ -14,9 +15,9 @@ namespace EBookStore.Application.DTOs
         public double YtdSales { get; set; }
         public string Notes { get; set; }
         public DateTime? PublishedDate { get; set; }
-        public int PubId { get; set; }
 
-        //public virtual PublisherDto Publisher { get; set; }
-        //public virtual ICollection<BookAuthorDto> BookAuthors { get; set; }
+        [DefaultValue(null)]
+        public int? PubId { get; set; }
+
     }
 }

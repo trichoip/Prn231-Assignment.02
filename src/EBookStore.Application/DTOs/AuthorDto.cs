@@ -14,6 +14,5 @@ namespace EBookStore.Application.DTOs
         public string State { get; set; }
         public int Zip { get; set; }
         public string EmailAddress { get; set; }
-        //public virtual ICollection<BookAuthorDto> BookAuthors { get; set; }
     }
 }

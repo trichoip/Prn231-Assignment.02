@@ -9,7 +9,5 @@ namespace EBookStore.Application.DTOs
         public int BookId { get; set; }
         public int AuthorOrder { get; set; }
         public float RoyalityPercentage { get; set; }
-        //public virtual AuthorDto Author { get; set; }
-        //public virtual BookDto Book { get; set; }
     }
 }

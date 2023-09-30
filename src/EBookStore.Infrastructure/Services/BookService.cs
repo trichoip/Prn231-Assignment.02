@@ -20,34 +20,38 @@ public class BookService : IBookService
 
     public async Task<BookDto> CreateAsync(BookDto entityDto)
     {
+        if (entityDto.PubId != null && entityDto.PubId != 0)
+        {
+            if (await _unitOfWork.PublisherRepository.FindByIdAsync(entityDto.PubId.GetValueOrDefault()) is null)
+                throw new KeyNotFoundException($"Entity with id {entityDto.PubId} not found");
+        }
         var entity = _mapper.Map<Book>(entityDto);
         await _unitOfWork.BookRepository.CreateAsync(entity);
         await _unitOfWork.CommitAsync();
         return _mapper.Map<BookDto>(entity);
     }
 
-    public async Task<IList<BookDto>> FindAllAsync()
-    {
-        var entities = await _unitOfWork.BookRepository.FindAllAsync();
-        return _mapper.Map<IList<BookDto>>(entities);
-    }
+    public async Task<Book?> FindByIdAsync(int id) => await _unitOfWork.BookRepository.FindByIdAsync(id);
 
-    public async Task<BookDto?> FindByIdAsync(int id)
+    public async Task RemoveAsync(int id)
     {
         var entity = await _unitOfWork.BookRepository.FindByIdAsync(id);
-        return _mapper.Map<BookDto>(entity);
-    }
-
-    public async Task RemoveAsync(BookDto entityDto)
-    {
-        var entity = _mapper.Map<Book>(entityDto);
+        if (entity is null) throw new KeyNotFoundException($"Entity with id {id} not found");
         await _unitOfWork.BookRepository.RemoveAsync(entity);
         await _unitOfWork.CommitAsync();
     }
 
     public async Task UpdateAsync(BookDto entityDto)
     {
-        var entity = _mapper.Map<Book>(entityDto);
+        if (entityDto.PubId != null && entityDto.PubId != 0)
+        {
+            if (await _unitOfWork.PublisherRepository.FindByIdAsync(entityDto.PubId.GetValueOrDefault()) is null)
+                throw new KeyNotFoundException($"Entity with id {entityDto.PubId} not found");
+        }
+
+        var entity = await _unitOfWork.BookRepository.FindByIdAsync(entityDto.BookId);
+        if (entity is null) throw new KeyNotFoundException($"Entity with id {entityDto.BookId} not found");
+        _mapper.Map(entityDto, entity);
         await _unitOfWork.BookRepository.UpdateAsync(entity);
         await _unitOfWork.CommitAsync();
     }

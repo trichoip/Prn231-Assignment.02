@@ -1,5 +1,6 @@
 ﻿using EBookStore.Application.Mappings;
 using EBookStore.Domain.Entities;
+using System.ComponentModel;
 
 namespace EBookStore.Application.DTOs
 {
@@ -12,12 +13,12 @@ namespace EBookStore.Application.DTOs
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public int RoleId { get; set; }
         public DateTime? HireDate { get; set; }
 
-        public int PubId { get; set; }
+        [DefaultValue(null)]
+        public int? RoleId { get; set; }
 
-        //public virtual PublisherDto Publisher { get; set; }
-        //public virtual RoleDto Role { get; set; }
+        [DefaultValue(null)]
+        public int? PubId { get; set; }
     }
 }

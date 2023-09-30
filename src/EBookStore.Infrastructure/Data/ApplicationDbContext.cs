@@ -18,11 +18,26 @@ namespace EBookStore.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<BookAuthor>(entity =>
             {
                 entity.HasKey(e => new { e.AuthorId, e.BookId });
             });
+
+            modelBuilder.Entity<Publisher>()
+                .HasMany(e => e.Users)
+                .WithOne(e => e.Publisher)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Role>()
+                .HasMany(e => e.Users)
+                .WithOne(e => e.Role)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Book>()
+                .HasOne(e => e.Publisher)
+                .WithMany(e => e.Books)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }
